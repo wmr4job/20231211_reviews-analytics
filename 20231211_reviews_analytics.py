@@ -14,9 +14,15 @@
 #計算每筆留言平均長度
 sum_len = 0
 data_len = []
+filtering =[]
 with open('reviews.txt', 'r') as f: #讀取reviews檔
 	for line in f:
 		data_len.append(len(line))
 		sum_len += len(line)
+
+		if len(line) < 100: #篩選留言長度小於100的
+			filtering.append(line)
+
 average = sum_len / len(data_len)
 print('每筆留言平均長度：',average)
+print('共有', len(filtering), '筆資料長度小於100')
