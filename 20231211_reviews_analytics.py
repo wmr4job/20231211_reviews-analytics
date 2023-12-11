@@ -15,6 +15,7 @@
 sum_len = 0
 data_len = []
 filtering =[]
+good = []
 with open('reviews.txt', 'r') as f: #讀取reviews檔
 	for line in f:
 		data_len.append(len(line))
@@ -23,6 +24,10 @@ with open('reviews.txt', 'r') as f: #讀取reviews檔
 		if len(line) < 100: #篩選留言長度小於100的
 			filtering.append(line)
 
+		if 'good' in line: #篩選有good的留言
+			good.append(line)
+
 average = sum_len / len(data_len)
 print('每筆留言平均長度：',average)
 print('共有', len(filtering), '筆資料長度小於100')
+print('共有', len(good), '筆資料中有good')
