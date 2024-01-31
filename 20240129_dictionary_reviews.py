@@ -6,10 +6,12 @@ import progressbar # 載入進度條的套件
 # 每讀取1000筆就印出一次
 data = [] # data存每筆留言內容
 count = 0
+bar = progressbar.ProgressBar(max_value=1000000)
 with open('reviews.txt', 'r', encoding='utf-8-sig') as f:
 	for line in f:
 		data.append(line)
 		count += 1
+		bar.update(count)
 print('檔案讀取完畢，總共有', len(data), '筆資料')
 
 # 單字計數、計時
@@ -34,7 +36,7 @@ for word in wc:
 
 # 讓使用者查字出現的次數
 while True:
-	word = input('請問你想查什麼字：(輸入q離開)')
+	word = input('請問你想查什麼字(輸入q離開)：')
 	if word == 'q':
 		print('離開！')
 		break
