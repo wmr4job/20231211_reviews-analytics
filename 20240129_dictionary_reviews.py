@@ -1,9 +1,19 @@
 # dictionary_reviews
 
+import time # 使用time的功能
+import progressbar # 載入進度條的套件
+
+# 每讀取1000筆就印出一次
 data = [] # data存每筆留言內容
+count = 0
 with open('reviews.txt', 'r', encoding='utf-8-sig') as f:
 	for line in f:
 		data.append(line)
+		count += 1
+print('檔案讀取完畢，總共有', len(data), '筆資料')
+
+# 單字計數、計時
+start_time = time.time()
 
 wc = {} # 宣告字典 wc = word_count
 for d in data: # 從所有留言中讀取單筆留言內容
@@ -13,6 +23,9 @@ for d in data: # 從所有留言中讀取單筆留言內容
 			wc[word] += 1 # 有的話就+1
 		elif word not in wc:
 			wc[word] = 1 # 沒有就把字新增到wc字典中(新增key)計為1
+
+end_time = time.time()
+print('單字計數共花', end_time - start_time, 's')
 
 # 印出每個字出現的次數
 for word in wc:
